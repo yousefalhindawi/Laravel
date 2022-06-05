@@ -15,19 +15,25 @@
                 @csrf
                 <div class="row mb-3 gx-3">
                   <div class="col">
-                    <input type="text" name="name" class="form-control form-control-lg" placeholder="Enter Name" required>
-                    {{-- <div class="invalid-feedback">Name is required!</div> --}}
+                    <input type="text" name="name" value="{{ old('name') }}" class="form-control form-control-lg" placeholder="Enter Name" >
+                    @error('name')
+                    <div class="text-danger fw-bolder">{{ $message }}</div>
+                    @enderror
                   </div>
                 </div>
 
                 <div class="mb-3">
-                  <input type="email" name="color" class="form-control form-control-lg" placeholder="Enter Color" required>
-                  {{-- <div class="invalid-feedback">Color is required!</div> --}}
+                  <input type="text" name="color" value="{{ old('color') }}" class="form-control form-control-lg" placeholder="Enter Color" >
+                  @error('color')
+                  <div class="text-danger fw-bolder">{{ $message }}</div>
+                  @enderror
                 </div>
 
                 <div class="mb-3">
-                  <input type="tel" name="year_made" class="form-control form-control-lg" placeholder="Enter Year_Made" required>
-                  {{-- <div class="invalid-feedback">Phone is required!</div> --}}
+                  <input type="number" name="year_made" value="{{ date("Y") }}" min="1885" max="{{ date("Y") }}"  class="form-control form-control-lg" placeholder="Enter Year_Made">
+                  @error('year_made')
+                  <div class="text-danger fw-bolder">{{ $message }}</div>
+                  @enderror
                 </div>
 
                 <div class="mb-3">

@@ -30,11 +30,13 @@ Route::get('/calculator/calculator', [CalculatorController::class, 'calculate'])
 //     return view('layout');
 // });
 
-Route::get('cars/search', [CarsController::class,'getId']);
+Route::get('cars/search', [CarsController::class,'getName'])->name('cars.getName');
 // Route::get('cars/index', [CarsController::class,'index']);
+Route::get('/searchNav', [CarsController::class,'getSearchNav'])->name('nav.searchNav');
 
 
 Route::resource('cars', CarsController::class);
+Route::get('/shop/{category?}/{items?}', [CarsController::class, 'getCategory']);
 
 // Route::get('cars/search', [CarsController::Class,'index']);
 

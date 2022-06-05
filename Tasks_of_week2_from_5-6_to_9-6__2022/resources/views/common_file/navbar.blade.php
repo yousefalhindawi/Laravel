@@ -35,39 +35,10 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="nav navbar-nav mx-auto ">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{{ url('/')}}">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{'/about'}}">about</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{url('/contact')}}">contact</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('cars.index')}}">cars</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Shop
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="{{ url('/shop') }}">All Categories</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="/shop/ford">Ford</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="/shop/nissan">Nissan</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="/shop/ford/fusion">Ford-Fusion</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{url('/cars/search')}}">search cars</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{url('/calculator/calculator')}}">calculator</a>
+            <a class="nav-link active" aria-current="page" href="{{ route('posts.index')}}">Posts</a>
           </li>
         </ul>
-        <form class="d-flex" role="search" method='get' action={{ route('nav.searchNav') }}>
+        <form class="d-flex" role="search" method='get' action=>
             @csrf
           <input class="form-control mx-2" type="search" name="searchCar" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-primary" type="submit" value="submit">Search</button>

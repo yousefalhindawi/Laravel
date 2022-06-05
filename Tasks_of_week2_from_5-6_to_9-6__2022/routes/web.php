@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,7 +14,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
-    return view('welcome');
+    return view('Posts_CRUD.index');
 });
+
+Route::resource('posts',PostController::class);
+// Route::post('posts' ,[PostController::class,'update'])->name('posts.index');
+// Route::get('posts',[PostController::class ,'getName'])->name('posts.getName');
