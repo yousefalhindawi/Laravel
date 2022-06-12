@@ -8,7 +8,7 @@
     @foreach ($data as $key => $post)
         <div class="col-lg-4 col-md-6 gx-3">
             <div class="postd ">
-                {{-- <h5 class="postd-header">Featured</h5> --}}
+                <img class="img-fluid" src="{{ asset(('PostsImage/'.$post->image)) }}" style="height:200px" alt="image" />
                 <div class="postd-body">
                   <h5 class="postd-title">{{ $post['title'] }}</h5>
                   <p class="postd-text">{{ $post->description }}</p>
@@ -23,6 +23,18 @@
             </div>
             @endforeach
         </div>
+        <div class="container d-flex justify-content-center">
+        <nav aria-label="Page navigation example" class="mx-auto my-5">
+            {{ $data->links() }}
+            {{-- <ul class="pagination pg-blue justify-content-center">
+              <li class="page-item"><a class="page-link">Previous</a></li>
+              <li class="page-item"><a href="secondPage.php" class="page-link">1</a></li>
+              <li class="page-item"><a href="secondPage.php" class="page-link">2</a></li>
+              <li class="page-item"><a href="thirdPage.php" class="page-link">3</a></li>
+              <li class="page-item"><a class="page-link">Next</a></li>
+            </ul> --}}
+          </nav>
+        </div>
     </div>
 
     @endif
@@ -33,13 +45,17 @@
                 {{ $message }}
             </div>
         @endif
-        <table class="table">
+        <table class="table text-center">
             <thead>
                 <tr>
                     {{-- <th scope="col">#</th> --}}
                     <th scope="col">Title</th>
                     <th scope="col">Description</th>
                     <th scope="col">Active</th>
+                    <th scope="col">Tags</th>
+                    <th scope="col">Created At</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
 
                 </tr>
             </thead>
@@ -56,14 +72,28 @@
                                 @else
                                 {{ 'Not Active' }}
                                 @endif</td>
-                            <td>
-                                <form method="get" action="{{ route('posts.edit',$post->id) }}">
+                                <td>
+                                    <ul>
+                                    @foreach ($post->tags as $tag)
+                                        <li>{{ $tag->name }}</li>
+                                        @endforeach
+                                    </ul>
+                                </td>
+                                <td>
+                                    {{ $post->created_at }}
+                                    {{-- @foreach ($post->tags as $post)
+                                    {{ $post->pivot->created_at }}
+                                    @endforeach --}}
+
+                                </td>
+                                <td >
+                                <form class="mx-2" method="get" action="{{ route('posts.edit',$post->id) }}">
                                     @csrf
                                     <button type="submit" class="btn btn-primary">Edit</button>
                                 </form>
-                            </td>
-                            <td>
-                                <form method="POST" action="{{ route('posts.destroy',$post->id) }}">
+                                </td>
+                                <td>
+                                <form class="mx-2" method="POST" action="{{ route('posts.destroy',$post->id) }}">
                                     @method('delete')
                                     @csrf
                                     <button type="submit" class="btn btn-danger">Delete</button>
@@ -77,8 +107,11 @@
             </tbody>
         </table>
     </div>
-    <div class="container col-4">
+    <div class="container col-4 my-3">
         <a class="nav-link btn btn-primary text-light" href="{{ route('posts.create') }}">create Posts</a>
+    </div>
+    <div class="container col-4 my-3">
+        <a class="nav-link btn btn-primary text-light" href="{{ route('tags.index') }}">create Tags</a>
     </div>
 
 @endsection
